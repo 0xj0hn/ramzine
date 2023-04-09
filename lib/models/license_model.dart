@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class LicenseModel extends ChangeNotifier {
   final List<String> licenseKeys = [
@@ -7,16 +8,17 @@ class LicenseModel extends ChangeNotifier {
   bool licenseMode = false;
 
   String? validateLicense(String? licenseValue) {
-    bool isValidated = false;
-    licenseKeys.forEach((licenseKey) {
-      if (licenseKey == licenseValue) {
-        isValidated = true;
-      }
-    });
-    if (isValidated) {
-      return null;
+    if (licenseValue!.isEmpty) {
+      return "لایسنس خود را وارد کنید.";
     } else {
-      return "لایسنس شما اشتباه است.";
+      return null;
     }
+  }
+
+  Future<bool> validateServerSide(String licenseKey) async {
+    var url = Uri.parse("http://localhost/enc/");
+    Map<String, dynamic> body = {"license_key": licenseKey};
+    http.Response request = await http.post(url, body: body);
+    return (request.statusCode == 200);
   }
 }
