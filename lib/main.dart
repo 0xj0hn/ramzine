@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'Encrypt/Decrypt',
       theme: ThemeModel().lightTheme,
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      initialRoute: "/home",
+      initialRoute:
+          Hive.box("auth").get("isLicenseEntered") ? "/home" : "/license",
       debugShowCheckedModeBanner: false,
       routes: {
         "/home": (context) => Directionality(
