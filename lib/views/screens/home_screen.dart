@@ -126,6 +126,18 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                 ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    children: const [
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
+                      Text("تهیه شده توسط محمدمهدی بنیادی"),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

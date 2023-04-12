@@ -28,6 +28,7 @@ class Encryption {
   }
 
   decrypt(String key, String cipherText) async {
+    key = generateMd5(key);
     List<int> cipherTextCodes = base64Decode(cipherText);
     List<int> secretKeyCodes = utf8.encode(key);
     SecretKey secretKey = SecretKey(
