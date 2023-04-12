@@ -41,6 +41,8 @@ dependencies:
   hive_flutter:
   provider:
   cryptography: ^2.1.1
+  crypto: ^3.0.2
+  convert:
 
 dev_dependencies:
   flutter_test:
