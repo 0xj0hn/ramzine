@@ -1,4 +1,4 @@
-import 'package:encdec/models/theme_model.dart';
+import 'package:encdec/viewmodels/theme_model.dart';
 import 'package:encdec/views/screens/home_screen.dart';
 import 'package:encdec/views/screens/license_screen.dart';
 import 'package:flutter/material.dart';
