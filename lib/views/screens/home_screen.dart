@@ -1,4 +1,4 @@
-import 'package:encdec/models/encryption_model.dart';
+import 'package:encdec/viewmodels/encryption_model.dart';
 import 'package:encdec/services/encryption_service.dart';
 import 'package:encdec/views/widgets/button_widget.dart';
 import 'package:encdec/views/widgets/textfield_widget.dart';
