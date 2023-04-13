@@ -35,7 +35,7 @@ class LicenseScreen extends StatelessWidget {
               ),
               const Center(
                 child: Icon(
-                  Icons.arrow_downward,
+                  Icons.keyboard_arrow_down,
                   color: Colors.grey,
                 ),
               ),
