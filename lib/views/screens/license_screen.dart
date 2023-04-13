@@ -61,6 +61,7 @@ class LicenseScreen extends StatelessWidget {
                         appService.snackBar("لایسنس شما اشتباه است!");
                       } else {
                         box.put("isLicenseEntered", true);
+                        box.put("license", licenseKeyTxt.text);
                         appService.replaceNamedNavigateTo("/home");
                       }
                     }

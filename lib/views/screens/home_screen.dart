@@ -1,17 +1,40 @@
+import 'package:encdec/services/app_service.dart';
+import 'package:encdec/services/license_service.dart';
 import 'package:encdec/viewmodels/encryption_model.dart';
 import 'package:encdec/services/encryption_service.dart';
+import 'package:encdec/viewmodels/license_model.dart';
 import 'package:encdec/views/widgets/button_widget.dart';
 import 'package:encdec/views/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   TextEditingController secretKeyTxt = TextEditingController();
   TextEditingController messageTxt = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
+  void initState() {
+    super.initState();
+    var box = Hive.box("auth");
+    Future.delayed(Duration.zero, () async {
+      bool isValidated =
+          await LicenseModel().validateServerSide(box.get("license"));
+      if (!isValidated) {
+        box.put("isLicenseEntered", false);
+        AppService(context).replaceNamedNavigateTo("/license");
+      }
+    });
+  }
+
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => EncryptionModel(),
