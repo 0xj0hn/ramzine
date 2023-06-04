@@ -1,6 +1,5 @@
 import 'package:encdec/services/license_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class LicenseModel extends ChangeNotifier {
   bool licenseMode = false;

@@ -7,8 +7,8 @@ import 'package:hive/hive.dart';
 
 class LicenseScreen extends StatelessWidget {
   LicenseScreen({super.key});
-  TextEditingController licenseKeyTxt = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController licenseKeyTxt = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
