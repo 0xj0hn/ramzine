@@ -1,9 +1,6 @@
 import 'package:encdec/services/app_service.dart';
-import 'package:encdec/services/license_service.dart';
 import 'package:encdec/viewmodels/encryption_model.dart';
-import 'package:encdec/services/encryption_service.dart';
 import 'package:encdec/viewmodels/license_model.dart';
-import 'package:encdec/views/widgets/button_widget.dart';
 import 'package:encdec/views/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -107,34 +104,42 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Consumer<EncryptionModel>(
-                      builder: (context, model, child) {
-                    return Column(
-                      children: [
-                        SelectableText(
-                          model.resultValue,
-                          style: TextStyle(
-                            color: Theme.of(context).canvasColor,
-                          ),
-                          onTap: () {
-                            Clipboard.setData(
-                                ClipboardData(text: model.resultValue));
-                          },
+                Consumer<EncryptionModel>(
+                  builder: (context, model, child) {
+                    return Visibility(
+                      visible: model.resultValue.isEmpty,
+                      replacement: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Theme.of(context).primaryColor,
                         ),
-                      ],
+                        child: Column(
+                          children: [
+                            SelectableText(
+                              model.resultValue,
+                              style: TextStyle(
+                                color: Theme.of(context).canvasColor,
+                              ),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: model.resultValue));
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: const Text("محل قرارگیری رمز..."),
+                      ),
                     );
-                  }),
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.copy,
                       color: Colors.black,
                     ),
@@ -149,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.keyboard_arrow_down,
                         color: Colors.grey,
@@ -179,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             }
           },
-          child: Icon(Icons.check_rounded),
+          child: const Icon(Icons.check_rounded),
         ),
       ),
     );
